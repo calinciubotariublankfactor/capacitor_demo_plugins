@@ -45,5 +45,45 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+    
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.example.plugin.payments</string>
+            </array>
+        </dict>
+    </array>
+    
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>com.venmo.touch.v2</string>
+    </array>
+    
+    <key>UIApplicationSceneManifest</key>
+        <dict>
+            <key>UIApplicationSupportsMultipleScenes</key>
+            <false/>
+            <key>UISceneConfigurations</key>
+            <dict>
+                <key>UIWindowSceneSessionRoleApplication</key>
+                <array>
+                    <dict>
+                        <key>UISceneClassName</key>
+                        <string>UIWindowScene</string>
+                        <key>UISceneConfigurationName</key>
+                        <string>Phone</string>
+                        <key>UISceneDelegateClassName</key>
+                        <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+                        <key>UISceneStoryboardFile</key>
+                        <string>Main</string>
+                    </dict>
+                </array>
+            </dict>
+        </dict>
+    
 </dict>
 </plist>

@@ -1,3 +1,4 @@
 export interface PaysafePluginPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  echo(): Promise<void>;
+  startVenmo(): Promise<string>;
 }
