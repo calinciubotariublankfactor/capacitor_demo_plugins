@@ -9,14 +9,41 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "PaysafePlugin")
 public class PaysafePluginPlugin extends Plugin {
 
-    private PaysafePlugin implementation = new PaysafePlugin();
+    private final PaysafePlugin implementation = new PaysafePlugin();
+
+    @Override
+    public void load() {
+        super.load();
+        implementation.setupSDK();
+    }
+
+    @Override
+    protected void handleOnStart() {
+        super.handleOnStart();
+        implementation.initializeVenmo(getActivity(), new VenmoInitializationCallback() {
+            @Override
+            public void onInitialized() {
+                System.out.println("onInitialized call");
+            }
+        });
+    }
 
     @PluginMethod
     public void echo(PluginCall call) {
-        String value = call.getString("value");
+        call.resolve();
+    }
 
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
+    @PluginMethod
+    public void startVenmo(PluginCall call) {
+        String consumerId = call.getString("consumerId");
+
+        implementation.tokenize(getContext(), consumerId, new VenmoTokenizationCallback() {
+            @Override
+            public void onTokenized(String result) {
+                JSObject ret = new JSObject();
+                ret.put("paymentToken", result);
+                call.resolve(ret);
+            }
+        });
     }
 }

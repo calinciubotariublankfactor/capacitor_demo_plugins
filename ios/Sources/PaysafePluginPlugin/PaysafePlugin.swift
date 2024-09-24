@@ -82,7 +82,7 @@ class PaysafeSDKService {
     }
     
     func tokenize(consumerId: String, completion: @escaping (String) -> Void) {
-        let totalPrice = 1 // $1
+        let totalPrice = 2001 // $1
         let amount = Int(totalPrice * 100)
         let venmoTokenizeOptions = PSVenmoTokenizeOptions(
             amount: amount,
